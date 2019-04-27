@@ -17,20 +17,17 @@ IconProvider::IconProvider()
 QImage IconProvider::requestImage(const QString &id, QSize *size, const QSize &requestedSize)
 {
     QImage image;
-    int width, height;
-    NSVGimage *parse;
-    NSVGrasterizer *rast;
-
     QFile path(":icons/" + id + ".svg");
+
     if (path.exists() && path.open(QFile::ReadOnly)) {
         QByteArray ba(path.readAll());
 
-        parse = nsvgParse(ba.data(), "px", 96.0f);
+        NSVGimage *parse = nsvgParse(ba.data(), "px", 96.0f);
         if (parse) {
-            rast = nsvgCreateRasterizer();
+            NSVGrasterizer *rast = nsvgCreateRasterizer();
             if (rast) {
-                width = static_cast<int>(parse->width);
-                height = static_cast<int>(parse->height);
+                int width = static_cast<int>(parse->width);
+                int height = static_cast<int>(parse->height);
 
                 if (size)
                     *size = QSize(width, height);

@@ -68,17 +68,20 @@ App {
 
                     model: ListModel {
                         ListElement {
-                            iconUrl: "image://icon/mic"
+                            iconUrl: "qrc:icons/mic.svg"
+//                            iconUrl: "image://icon/mic"
                             text: qsTr("Speech Recognition")
                             page: "pages/SpeechRecognitionPage.qml"
                         }
                         ListElement {
-                            iconUrl: "image://icon/settings"
+                            iconUrl: "qrc:icons/settings.svg"
+//                            iconUrl: "image://icon/settings"
                             text: qsTr("Settings")
                             page: "pages/SettingsPage.qml"
                         }
                         ListElement {
-                            iconUrl: "image://icon/info"
+                            iconUrl: "qrc:icons/info.svg"
+//                            iconUrl: "image://icon/info"
                             text: qsTr("About")
                             page: "pages/AboutPage.qml"
                         }

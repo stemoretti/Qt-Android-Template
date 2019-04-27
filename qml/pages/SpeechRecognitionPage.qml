@@ -13,7 +13,8 @@ AppStackPage {
 
     rightButtons: [
         Action {
-            icon.source: "image://icon/mic"
+            icon.source: "qrc:icons/mic.svg"
+//            icon.source: "image://icon/mic"
             onTriggered: appData.startSpeechRecognizer();
         }
     ]

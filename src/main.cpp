@@ -8,7 +8,7 @@
 
 #include "appdata.h"
 #include "settings.h"
-#include "iconprovider.h"
+//#include "iconprovider.h"
 
 int main(int argc, char *argv[])
 {
@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
     context->setContextProperty("appSettings", &Settings::instance());
     context->setContextProperty("appTranslations", translations);
 
-    engine.addImageProvider(QLatin1String("icon"), new IconProvider);
+//    engine.addImageProvider(QLatin1String("icon"), new IconProvider);
 
     engine.load(QUrl(QLatin1String("qrc:/qml/main.qml")));
 

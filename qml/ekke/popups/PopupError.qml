@@ -38,7 +38,8 @@ Popup {
             Image {
                 id: alarmIcon
                 smooth: true
-                source: "image://icon/error"
+                source: "qrc:icons/error.svg"
+//                source: "image://icon/error"
                 sourceSize.width: 36
                 sourceSize.height: 36
                 ColorOverlay {

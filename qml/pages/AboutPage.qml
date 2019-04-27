@@ -69,6 +69,7 @@ AppStackPage {
 
                 HorizontalDivider { }
 
+                /*
                 LabelBody {
                     text: "SVG rendering code is under the zlib license<br/>"
                           + "Copyright (c) 2013-14 Mikko Mononen memon@inside.org<br/>"
@@ -81,6 +82,7 @@ AppStackPage {
                 }
 
                 HorizontalDivider { }
+                */
 
                 LabelSubheading {
                     text: qsTr("Some code is from the following repositories:")

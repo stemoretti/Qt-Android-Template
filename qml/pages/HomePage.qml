@@ -13,13 +13,15 @@ AppStackPage {
     title: qsTr("Home Page")
 
     leftButton: Action {
-        icon.source: "image://icon/menu"
+        icon.source: "qrc:icons/menu.svg"
+//        icon.source: "image://icon/menu"
         onTriggered: navDrawer.open()
     }
 
     rightButtons: [
         Action {
-            icon.source: "image://icon/more_vert"
+            icon.source: "qrc:icons/more_vert.svg"
+//            icon.source: "image://icon/more_vert"
             onTriggered: optionsMenu.open()
         }
     ]
