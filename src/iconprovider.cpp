@@ -1,53 +1,45 @@
 #include "iconprovider.h"
 
-#include <QByteArray>
 #include <QFile>
-#include <QDebug>
-
-#define NANOSVG_IMPLEMENTATION
-#include "nanosvg/src/nanosvg.h"
-#define NANOSVGRAST_IMPLEMENTATION
-#include "nanosvg/src/nanosvgrast.h"
+#include <QFont>
+#include <QJsonDocument>
+#include <QPainter>
 
 IconProvider::IconProvider()
     : QQuickImageProvider(QQuickImageProvider::Image)
 {
+    QFile file(":/icons/codepoints.json");
+    if (file.exists() && file.open(QFile::ReadOnly)) {
+        auto jd = QJsonDocument::fromJson(file.readAll());
+        codepoints = jd.object();
+    }
 }
 
 QImage IconProvider::requestImage(const QString &id, QSize *size, const QSize &requestedSize)
 {
-    QImage image;
-    QFile path(":icons/" + id + ".svg");
+    int width = 48;
+    int height = 48;
 
-    if (path.exists() && path.open(QFile::ReadOnly)) {
-        QByteArray ba(path.readAll());
+    if (requestedSize.width() > 0)
+        width = requestedSize.width();
 
-        NSVGimage *parse = nsvgParse(ba.data(), "px", 96.0f);
-        if (parse) {
-            NSVGrasterizer *rast = nsvgCreateRasterizer();
-            if (rast) {
-                int width = static_cast<int>(parse->width);
-                int height = static_cast<int>(parse->height);
+    if (requestedSize.height() > 0)
+        height = requestedSize.height();
 
-                if (size)
-                    *size = QSize(width, height);
+    if (size)
+        *size = QSize(width, height);
 
-                QImage img(width, height, QImage::Format_RGBA8888);
-                nsvgRasterize(rast, parse, 0, 0, 1, img.bits(), width, height, width * 4);
+    QImage image(width, height, QImage::Format_RGBA8888);
+    image.fill(QColor(Qt::transparent));
 
-                if (requestedSize.width() > 0)
-                    width = requestedSize.width();
+    QFont font("Material Icons");
+    font.setPixelSize(width < height ? width : height);
 
-                if (requestedSize.height() > 0)
-                    height = requestedSize.height();
-
-                image = img.scaled(width, height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-            }
-            nsvgDeleteRasterizer(rast);
-        }
-        nsvgDelete(parse);
-    }
+    QPainter painter(&image);
+    painter.setFont(font);
+    painter.drawText(0, height,
+                     codepoints[id] != QJsonValue::Undefined ? codepoints[id].toString() : "?");
+    painter.end();
 
     return image;
 }
-

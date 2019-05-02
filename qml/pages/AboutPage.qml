@@ -69,21 +69,6 @@ AppStackPage {
 
                 HorizontalDivider { }
 
-                /*
-                LabelBody {
-                    text: "SVG rendering code is under the zlib license<br/>"
-                          + "Copyright (c) 2013-14 Mikko Mononen memon@inside.org<br/>"
-                          + "<a href='https://www.github.com/memononen/nanosvg'>"
-                          + "github.com/memononen/nanosvg</a>"
-                    wrapMode: Text.WordWrap
-                    Layout.fillWidth: true
-                    linkColor: isDarkTheme ? "lightblue" : "blue"
-                    onLinkActivated: Qt.openUrlExternally(link)
-                }
-
-                HorizontalDivider { }
-                */
-
                 LabelSubheading {
                     text: qsTr("Some code is from the following repositories:")
                     wrapMode: Text.WordWrap

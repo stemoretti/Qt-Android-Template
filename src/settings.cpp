@@ -41,7 +41,7 @@ void Settings::readSettingsFile()
         qWarning() << "Cannot find the settings file:" << m_settingsFilePath;
         qDebug() << "Using default settings values";
         setRegion(System::systemRegion());
-        if (QString(AVAILABLE_TRANSLATIONS).split(' ').contains(System::systemLanguage()))
+        if (System::translations().contains(System::systemLanguage()))
             setLanguage(System::systemLanguage());
         return;
     }

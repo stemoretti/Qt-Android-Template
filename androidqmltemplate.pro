@@ -7,13 +7,13 @@ QT += qml quick quickcontrols2
 CONFIG += c++11
 
 HEADERS += \
-    #src/iconprovider.h \
+    src/iconprovider.h \
     src/settings.h \
     src/appdata.h \
     src/system.h
 
 SOURCES += \
-    #src/iconprovider.cpp \
+    src/iconprovider.cpp \
     src/main.cpp \
     src/settings.cpp \
     src/appdata.cpp \
@@ -79,7 +79,7 @@ for(tsfile, TRANSLATIONS) {
 DEFINES += 'AVAILABLE_TRANSLATIONS=\\\"\'$$LANGUAGES\'\\\"'
 
 android {
-    QT += androidextras svg
+    QT += androidextras
 
     # Android package sources
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android

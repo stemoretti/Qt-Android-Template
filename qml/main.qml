@@ -3,8 +3,8 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.3
 import "common"
-import "ekke/common"
 import "pages"
+import "ekke/common"
 
 App {
     id: appWindow
@@ -68,20 +68,17 @@ App {
 
                     model: ListModel {
                         ListElement {
-                            iconUrl: "qrc:icons/mic.svg"
-//                            iconUrl: "image://icon/mic"
+                            iconUrl: "image://icon/mic"
                             text: qsTr("Speech Recognition")
                             page: "pages/SpeechRecognitionPage.qml"
                         }
                         ListElement {
-                            iconUrl: "qrc:icons/settings.svg"
-//                            iconUrl: "image://icon/settings"
+                            iconUrl: "image://icon/settings"
                             text: qsTr("Settings")
                             page: "pages/SettingsPage.qml"
                         }
                         ListElement {
-                            iconUrl: "qrc:icons/info.svg"
-//                            iconUrl: "image://icon/info"
+                            iconUrl: "image://icon/info"
                             text: qsTr("About")
                             page: "pages/AboutPage.qml"
                         }
