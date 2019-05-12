@@ -13,18 +13,13 @@
         <source>This app is based on the following software:</source>
         <translation>Questa app si basa sul software seguente:</translation>
     </message>
-    <message>
-        <location filename="../qml/pages/AboutPage.qml" line="86"/>
-        <source>Some code is from the following repositories:</source>
-        <translation>Parti di codice provengono dai seguenti siti:</translation>
-    </message>
 </context>
 <context>
     <name>App</name>
     <message>
         <location filename="../qml/common/App.qml" line="96"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">OK</translation>
     </message>
     <message>
         <location filename="../qml/common/App.qml" line="101"/>
@@ -33,99 +28,99 @@
     </message>
 </context>
 <context>
-    <name>ColorComboBox</name>
+    <name>ColorSelectionPopup</name>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="51"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="61"/>
         <source>Material Red</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="52"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="62"/>
         <source>Material Pink</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="53"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="63"/>
         <source>Material Purple</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="54"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="64"/>
         <source>Material DeepPurple</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="55"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="65"/>
         <source>Material Indigo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="56"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="66"/>
         <source>Material Blue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="57"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="67"/>
         <source>Material LightBlue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="58"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="68"/>
         <source>Material Cyan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="59"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="69"/>
         <source>Material Teal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="60"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="70"/>
         <source>Material Green</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="61"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="71"/>
         <source>Material LightGreen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="62"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="72"/>
         <source>Material Lime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="63"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="73"/>
         <source>Material Yellow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="64"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="74"/>
         <source>Material Amber</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="65"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="75"/>
         <source>Material Orange</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="66"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="76"/>
         <source>Material DeepOrange</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="67"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="77"/>
         <source>Material Brown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="68"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="78"/>
         <source>Material Grey</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ColorComboBox.qml" line="69"/>
+        <location filename="../qml/popups/ColorSelectionPopup.qml" line="79"/>
         <source>Material BlueGrey</source>
         <translation type="unfinished"></translation>
     </message>
@@ -145,7 +140,7 @@
     <message>
         <location filename="../qml/popups/DatePicker.qml" line="185"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">OK</translation>
     </message>
 </context>
 <context>
@@ -161,7 +156,7 @@
         <translation>Messaggio per notifica:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/HomePage.qml" line="78"/>
+        <location filename="../qml/pages/HomePage.qml" line="79"/>
         <source>Send Notification</source>
         <translation>Invia Notifica</translation>
     </message>
@@ -190,44 +185,44 @@ Do you want to exit and leave the App ?
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="9"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="10"/>
         <source>Settings</source>
         <translation>Impostazioni</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="26"/>
-        <source>Theme:</source>
-        <translation>Tema:</translation>
+        <location filename="../qml/pages/SettingsPage.qml" line="29"/>
+        <source>Dark theme is enabled</source>
+        <translation>Tema scuro abilitato</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="32"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="30"/>
+        <source>Dark theme is disabled</source>
+        <translation>Tema scuro disabilitato</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="38"/>
+        <source>Primary Color</source>
+        <translation>Colore Primario</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="44"/>
+        <source>Accent Color</source>
+        <translation>Colore Secondario</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="52"/>
+        <source>Language</source>
+        <translation>Lingua</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="58"/>
+        <source>Region</source>
+        <translation>Nazione</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="27"/>
         <source>Dark Theme</source>
         <translation>Tema Scuro</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="32"/>
-        <source>Light Theme</source>
-        <translation>Tema Chiaro</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="39"/>
-        <source>Primary Color:</source>
-        <translation>Colore Primario:</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="51"/>
-        <source>Accent Color:</source>
-        <translation>Colore Secondario:</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="67"/>
-        <source>Language:</source>
-        <translation>Lingua:</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="92"/>
-        <source>Country:</source>
-        <translation>Nazione:</translation>
     </message>
 </context>
 <context>
@@ -264,17 +259,17 @@ Do you want to exit and leave the App ?
 <context>
     <name>main</name>
     <message>
-        <location filename="../qml/main.qml" line="72"/>
+        <location filename="../qml/main.qml" line="74"/>
         <source>Speech Recognition</source>
         <translation>Riconoscimento Vocale</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="77"/>
+        <location filename="../qml/main.qml" line="79"/>
         <source>Settings</source>
         <translation>Impostazioni</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="82"/>
+        <location filename="../qml/main.qml" line="84"/>
         <source>About</source>
         <translation>Informazioni App</translation>
     </message>

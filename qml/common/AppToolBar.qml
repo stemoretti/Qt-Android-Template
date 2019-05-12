@@ -18,6 +18,7 @@ ToolBar {
             icon.source: leftButton ? leftButton.icon.source : ""
             icon.color: textOnPrimary
             focusPolicy: Qt.NoFocus
+            opacity: opacityTitle
             enabled: leftButton && leftButton.enabled
             onClicked: leftButton.trigger()
         }
@@ -33,6 +34,7 @@ ToolBar {
                 icon.source: rightButtons[index].icon.source
                 icon.color: textOnPrimary
                 focusPolicy: Qt.NoFocus
+                opacity: opacityTitle
                 enabled: rightButtons[index].enabled
                 onClicked: rightButtons[index].trigger()
             }

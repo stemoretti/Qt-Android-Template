@@ -5,11 +5,12 @@
 #include <QJsonDocument>
 #include <QPainter>
 
-IconProvider::IconProvider()
+IconProvider::IconProvider(const QString &fontName, const QString &iconCodes)
     : QQuickImageProvider(QQuickImageProvider::Image)
+    , fontName(fontName)
 {
-    QFile file(":/icons/codepoints.json");
-    if (file.exists() && file.open(QFile::ReadOnly)) {
+    QFile file(iconCodes);
+    if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         auto jd = QJsonDocument::fromJson(file.readAll());
         codepoints = jd.object();
     }
@@ -32,7 +33,7 @@ QImage IconProvider::requestImage(const QString &id, QSize *size, const QSize &r
     QImage image(width, height, QImage::Format_RGBA8888);
     image.fill(QColor(Qt::transparent));
 
-    QFont font("Material Icons");
+    QFont font(fontName);
     font.setPixelSize(width < height ? width : height);
 
     QPainter painter(&image);

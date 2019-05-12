@@ -51,6 +51,7 @@ AppStackPage {
                         rightPadding: 10
                         anchors.fill: parent
                         selectByMouse: true
+                        inputMethodHints: Qt.ImhNoPredictiveText
                         text: appData.message
                         onEditingFinished: {
                             appData.message = text

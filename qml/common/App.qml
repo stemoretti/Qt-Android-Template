@@ -99,8 +99,6 @@ ApplicationWindow {
 
     visible: true
     title: qsTr("App")
-    width: 360
-    height: 480
     locale: Qt.locale("en_US")
 
     Material.primary: appSettings.primaryColor

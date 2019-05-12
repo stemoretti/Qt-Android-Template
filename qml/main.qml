@@ -11,6 +11,8 @@ App {
 
     title: "Android Qml Template"
     header: pageStack.currentItem.appToolBar
+    width: 360
+    height: 480
 
     StackView {
         id: pageStack

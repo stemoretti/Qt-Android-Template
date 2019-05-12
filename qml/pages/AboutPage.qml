@@ -69,12 +69,6 @@ AppStackPage {
 
                 HorizontalDivider { }
 
-                LabelSubheading {
-                    text: qsTr("Some code is from the following repositories:")
-                    wrapMode: Text.WordWrap
-                    Layout.fillWidth: true
-                }
-
                 LabelBody {
                     text: "<a href='https://www.github.com/ekke'>github.com/ekke</a>"
                     linkColor: isDarkTheme ? "lightblue" : "blue"
