@@ -19,10 +19,12 @@
         <file>qml/common/App.qml</file>
         <file>qml/common/AppStackPage.qml</file>
         <file>qml/common/AppToolBar.qml</file>
-        <file>qml/common/ColorComboBox.qml</file>
         <file>qml/pages/AboutPage.qml</file>
         <file>qml/pages/HomePage.qml</file>
         <file>qml/pages/SettingsPage.qml</file>
         <file>qml/pages/SpeechRecognitionPage.qml</file>
+        <file>qml/popups/ColorSelectionPopup.qml</file>
+        <file>qml/common/SettingsItem.qml</file>
+        <file>qml/popups/LocalizationPopup.qml</file>
     </qresource>
 </RCC>
