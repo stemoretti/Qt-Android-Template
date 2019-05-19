@@ -8,7 +8,7 @@ import "../languages.js" as JS
 
 AppStackPage {
     title: qsTr("Settings")
-    padding: 10
+    padding: 0
 
     Flickable {
         contentHeight: settingsPane.implicitHeight
@@ -22,6 +22,7 @@ AppStackPage {
 
             ColumnLayout {
                 width: parent.width
+                spacing: 0
 
                 SettingsItem {
                     title: qsTr("Dark Theme")

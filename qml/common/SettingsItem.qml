@@ -16,11 +16,13 @@ ItemDelegate {
             spacing: 0
             LabelSubheading {
                 id: titleLabel
-                leftPadding: 10
+                topPadding: 10
+                leftPadding: 20
             }
             LabelBody {
                 id: subtitleLabel
-                leftPadding: 10
+                leftPadding: 20
+                bottomPadding: 10
                 opacity: 0.6
             }
         }
@@ -29,6 +31,7 @@ ItemDelegate {
         }
         Switch {
             id: settingSwitch
+            rightPadding: 20
             visible: false
         }
     }
