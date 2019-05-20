@@ -3,16 +3,17 @@
 
 #include <QQuickImageProvider>
 #include <QJsonObject>
+#include <QFont>
 
 class IconProvider : public QQuickImageProvider
 {
 public:
-    explicit IconProvider(const QString &fontName, const QString &iconCodes);
+    explicit IconProvider(const QString &family, const QString &codesPath);
 
     QImage requestImage(const QString &id, QSize *size, const QSize &requestedSize) override;
 private:
     QJsonObject codepoints;
-    QString fontName;
+    QFont font;
 };
 
 #endif // ICONPROVIDER_H
