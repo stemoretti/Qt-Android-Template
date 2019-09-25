@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QJsonDocument>
 #include <QPainter>
+#include <QFontMetrics>
 
 IconProvider::IconProvider(const QString &family, const QString &codesPath)
     : QQuickImageProvider(QQuickImageProvider::Image)
@@ -12,7 +13,10 @@ IconProvider::IconProvider(const QString &family, const QString &codesPath)
     QFile file(codesPath);
     if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         auto jd = QJsonDocument::fromJson(file.readAll());
-        codepoints = jd.object();
+        if (!jd.isNull())
+            codepoints = jd.object();
+        else
+            qWarning() << "Invalid codepoints JSON file" << codesPath;
     } else {
         qWarning() << "Cannot open icon codes file" << codesPath;
         qWarning() << file.errorString();
@@ -44,9 +48,14 @@ QImage IconProvider::requestImage(const QString &id, QSize *size, const QSize &r
     else
         iconChar = codepoints[id].toString();
 
+    QFontMetrics fm(font);
+    double widthRatio = static_cast<double>(width) / fm.boundingRect(iconChar).width();
+    if (widthRatio < 1.0)
+        font.setPixelSize(static_cast<int>(font.pixelSize() * widthRatio));
+
     QPainter painter(&image);
     painter.setFont(font);
-    painter.drawText(0, height, iconChar);
+    painter.drawText(QRect(0, 0, width, height), Qt::AlignCenter, iconChar);
     painter.end();
 
     return image;
