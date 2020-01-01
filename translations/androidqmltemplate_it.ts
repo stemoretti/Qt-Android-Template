@@ -4,12 +4,12 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="8"/>
+        <location filename="../qml/pages/AboutPage.qml" line="7"/>
         <source>About</source>
         <translation>Informazioni App</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="39"/>
+        <location filename="../qml/pages/AboutPage.qml" line="38"/>
         <source>This app is based on the following software:</source>
         <translation>Questa app si basa sul software seguente:</translation>
     </message>
@@ -17,12 +17,12 @@
 <context>
     <name>App</name>
     <message>
-        <location filename="../qml/common/App.qml" line="96"/>
+        <location filename="../qml/common/App.qml" line="95"/>
         <source>OK</source>
         <translation type="unfinished">OK</translation>
     </message>
     <message>
-        <location filename="../qml/common/App.qml" line="101"/>
+        <location filename="../qml/common/App.qml" line="100"/>
         <source>App</source>
         <translation type="unfinished"></translation>
     </message>
@@ -128,17 +128,17 @@
 <context>
     <name>DatePicker</name>
     <message>
-        <location filename="../qml/popups/DatePicker.qml" line="165"/>
+        <location filename="../qml/popups/DatePicker.qml" line="164"/>
         <source>Clear</source>
         <translation>Cancella</translation>
     </message>
     <message>
-        <location filename="../qml/popups/DatePicker.qml" line="177"/>
+        <location filename="../qml/popups/DatePicker.qml" line="176"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../qml/popups/DatePicker.qml" line="185"/>
+        <location filename="../qml/popups/DatePicker.qml" line="184"/>
         <source>OK</source>
         <translation type="unfinished">OK</translation>
     </message>
@@ -146,17 +146,17 @@
 <context>
     <name>HomePage</name>
     <message>
-        <location filename="../qml/pages/HomePage.qml" line="13"/>
+        <location filename="../qml/pages/HomePage.qml" line="12"/>
         <source>Home Page</source>
         <translation>Pagina Principale</translation>
     </message>
     <message>
-        <location filename="../qml/pages/HomePage.qml" line="42"/>
+        <location filename="../qml/pages/HomePage.qml" line="41"/>
         <source>Message for notification:</source>
         <translation>Messaggio per notifica:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/HomePage.qml" line="79"/>
+        <location filename="../qml/pages/HomePage.qml" line="78"/>
         <source>Send Notification</source>
         <translation>Invia Notifica</translation>
     </message>
@@ -164,7 +164,7 @@
 <context>
     <name>PopupExit</name>
     <message>
-        <location filename="../qml/ekke/popups/PopupExit.qml" line="24"/>
+        <location filename="../qml/popups/PopupExit.qml" line="24"/>
         <source>No more Pages
 Do you want to exit and leave the App ?
 
@@ -172,12 +172,12 @@ Do you want to exit and leave the App ?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/ekke/popups/PopupExit.qml" line="33"/>
+        <location filename="../qml/popups/PopupExit.qml" line="33"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../qml/ekke/popups/PopupExit.qml" line="42"/>
+        <location filename="../qml/popups/PopupExit.qml" line="42"/>
         <source>Exit the App</source>
         <translation>Esci dalla App</translation>
     </message>
@@ -185,7 +185,7 @@ Do you want to exit and leave the App ?
 <context>
     <name>SettingsContinentsPage</name>
     <message>
-        <location filename="../qml/pages/SettingsContinentsPage.qml" line="9"/>
+        <location filename="../qml/pages/SettingsContinentsPage.qml" line="8"/>
         <source>Continents</source>
         <translation>Continenti</translation>
     </message>
@@ -193,7 +193,7 @@ Do you want to exit and leave the App ?
 <context>
     <name>SettingsCountriesPage</name>
     <message>
-        <location filename="../qml/pages/SettingsCountriesPage.qml" line="16"/>
+        <location filename="../qml/pages/SettingsCountriesPage.qml" line="15"/>
         <source>Countries</source>
         <translation>Nazioni</translation>
     </message>
@@ -201,42 +201,42 @@ Do you want to exit and leave the App ?
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="10"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="9"/>
         <source>Settings</source>
         <translation>Impostazioni</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="30"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="29"/>
         <source>Dark theme is enabled</source>
         <translation>Tema scuro abilitato</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="31"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="30"/>
         <source>Dark theme is disabled</source>
         <translation>Tema scuro disabilitato</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="39"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="38"/>
         <source>Primary Color</source>
         <translation>Colore Primario</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="45"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="44"/>
         <source>Accent Color</source>
         <translation>Colore Secondario</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="53"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="52"/>
         <source>Language</source>
         <translation>Lingua</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="62"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="61"/>
         <source>Country</source>
         <translation>Nazione</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="28"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="27"/>
         <source>Dark Theme</source>
         <translation>Tema Scuro</translation>
     </message>
@@ -244,7 +244,7 @@ Do you want to exit and leave the App ?
 <context>
     <name>SpeechRecognitionPage</name>
     <message>
-        <location filename="../qml/pages/SpeechRecognitionPage.qml" line="11"/>
+        <location filename="../qml/pages/SpeechRecognitionPage.qml" line="9"/>
         <source>Speech Recognition</source>
         <translation>Riconoscimento Vocale</translation>
     </message>
@@ -252,22 +252,22 @@ Do you want to exit and leave the App ?
 <context>
     <name>TimePicker</name>
     <message>
-        <location filename="../qml/popups/TimePicker.qml" line="270"/>
+        <location filename="../qml/popups/TimePicker.qml" line="269"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../qml/popups/TimePicker.qml" line="283"/>
+        <location filename="../qml/popups/TimePicker.qml" line="282"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../qml/popups/TimePicker.qml" line="315"/>
+        <location filename="../qml/popups/TimePicker.qml" line="314"/>
         <source>Now</source>
         <translation>Attuale</translation>
     </message>
     <message>
-        <location filename="../qml/popups/TimePicker.qml" line="326"/>
+        <location filename="../qml/popups/TimePicker.qml" line="325"/>
         <source>Clear</source>
         <translation>Cancella</translation>
     </message>
@@ -275,17 +275,17 @@ Do you want to exit and leave the App ?
 <context>
     <name>main</name>
     <message>
-        <location filename="../qml/main.qml" line="74"/>
+        <location filename="../qml/main.qml" line="73"/>
         <source>Speech Recognition</source>
         <translation>Riconoscimento Vocale</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="79"/>
+        <location filename="../qml/main.qml" line="78"/>
         <source>Settings</source>
         <translation>Impostazioni</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="84"/>
+        <location filename="../qml/main.qml" line="83"/>
         <source>About</source>
         <translation>Informazioni App</translation>
     </message>

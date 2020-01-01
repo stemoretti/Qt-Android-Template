@@ -3,7 +3,6 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 import Qt.labs.calendar 1.0
 import QtQuick.Controls.Material 2.3
-import "../ekke/common"
 import "../common"
 
 Popup {

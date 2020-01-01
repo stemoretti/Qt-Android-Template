@@ -4,7 +4,6 @@ import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.3
 import "common"
 import "pages"
-import "ekke/common"
 
 App {
     id: appWindow

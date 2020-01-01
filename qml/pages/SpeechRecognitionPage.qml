@@ -2,8 +2,6 @@ import QtQuick 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5
 import QtQml 2.12
-import "../ekke/common"
-import "../ekke/popups"
 import "../common"
 import "../popups"
 
