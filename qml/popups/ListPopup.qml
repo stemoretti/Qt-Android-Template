@@ -1,7 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 
-Popup {
+BaseModalPopup {
     id: root
 
     property alias model: internalList.model
@@ -10,13 +10,8 @@ Popup {
 
     signal clicked(var data, int index)
 
-    modal: true
-    dim: true
-    padding: 0
-    x: (parent.width - width) / 2
-    y: (parent.height - height) / 2 - appToolBar.height / 2
     implicitWidth: appWindow.width * 0.9
-    implicitHeight: Math.min(internalList.contentHeight, appWindow.height * 0.9)
+    contentHeight: internalList.contentHeight
 
     ListView {
         id: internalList

@@ -12,19 +12,19 @@ QString System::dataRoot()
     return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
 }
 
-QString System::systemLanguage()
+QString System::language()
 {
     return QLocale().name().left(2);
 }
 
-QString System::systemRegion()
+QString System::locale()
 {
     return QLocale().name();
 }
 
 QStringList System::translations()
 {
-    QStringList translations({ "en" });
+    QStringList translations({"en"});
     translations.append(QString(AVAILABLE_TRANSLATIONS).split(' '));
     translations.sort();
     return translations;

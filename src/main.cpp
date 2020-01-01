@@ -27,21 +27,19 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    engine.addImageProvider("icon",
-                            new IconProvider("Material Icons", ":/icons/codepoints.json"));
+    engine.addImageProvider("icon", new IconProvider("Material Icons", ":/icons/codepoints.json"));
 
     qDebug() << "Available translations:" << System::translations();
     QScopedPointer<QTranslator> translator;
-    QCoreApplication::connect(&Settings::instance(), &Settings::languageChanged,
-                              [&engine, &translator] (QString language) {
+    QObject::connect(&Settings::instance(), &Settings::languageChanged,
+                     [&engine, &translator] (QString language) {
         if (!translator.isNull()) {
             QCoreApplication::removeTranslator(translator.data());
             translator.reset();
         }
         if (language != "en") {
             translator.reset(new QTranslator);
-            if (translator->load(QLocale(language), QLatin1String("androidqmltemplate"),
-                                 QLatin1String("_"), QLatin1String(":/translations")))
+            if (translator->load(QLocale(language), "androidqmltemplate", "_", ":/translations"))
                 QCoreApplication::installTranslator(translator.data());
         }
         engine.retranslate();
@@ -54,7 +52,14 @@ int main(int argc, char *argv[])
     context->setContextProperty("appSettings", &Settings::instance());
     context->setContextProperty("appTranslations", System::translations());
 
-    engine.load(QUrl(QLatin1String("qrc:/qml/main.qml")));
+    engine.load(QUrl("qrc:/qml/main.qml"));
+
+    QObject::connect(&app, &QGuiApplication::applicationStateChanged,
+                     [] (Qt::ApplicationState state) {
+        if (state == Qt::ApplicationSuspended) {
+            Settings::instance().writeSettingsFile();
+        }
+    });
 
     return app.exec();
 }

@@ -9,8 +9,8 @@ class System : public QObject
 
 public:
     static QString dataRoot();
-    static QString systemLanguage();
-    static QString systemRegion();
+    static QString language();
+    static QString locale();
     static QStringList translations();
 
 private:

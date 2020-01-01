@@ -3,21 +3,17 @@ import QtQuick.Controls 2.5
 import QtQuick.Controls.Material 2.3
 import "../ekke/common"
 
-Popup {
+BaseModalPopup {
     property bool selectAccentColor: false
     property color currentColor: primaryColor
     property int currentIndex: 0
     property alias model: colorModel
 
-    modal: true
-    dim: true
-    padding: 0
-    x: (parent.width - width) / 2
-    y: (parent.height - height) / 2 - appToolBar.height / 2
     implicitWidth: appWindow.width * 0.9
-    implicitHeight: appWindow.height * 0.9
+    contentHeight: colorsList.contentHeight
 
     ListView {
+        id: colorsList
         anchors.fill: parent
         clip: true
         delegate: ItemDelegate {

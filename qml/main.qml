@@ -17,7 +17,7 @@ App {
     StackView {
         id: pageStack
         anchors.fill: parent
-        initialItem: HomePage { }
+        initialItem: Qt.resolvedUrl("pages/HomePage.qml")
         onCurrentItemChanged: {
             if (currentItem) {
                 currentItem.canNavigateBack = depth > 1
@@ -98,15 +98,6 @@ App {
                         }
                     }
                 }
-            }
-        }
-    }
-
-    Connections {
-        target: Qt.application
-        onStateChanged: {
-            if (Qt.application.state === Qt.ApplicationSuspended) {
-                appSettings.writeSettingsFile()
             }
         }
     }

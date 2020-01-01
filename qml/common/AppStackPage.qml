@@ -16,6 +16,10 @@ Page {
         return StackView.view.pop(item, operation)
     }
 
+    function back() {
+        return pop()
+    }
+
     function push(item, properties, operation) {
         return StackView.view.push(item, properties, operation)
     }
@@ -23,7 +27,7 @@ Page {
     Keys.onBackPressed: {
         if (StackView.view.depth > 1) {
             event.accepted = true
-            pop()
+            back()
         } else {
             Qt.quit()
         }
@@ -32,7 +36,7 @@ Page {
     Action {
         id: backAction
         icon.source: "image://icon/arrow_back"
-        onTriggered: page.pop()
+        onTriggered: page.back()
     }
 
     AppToolBar {
