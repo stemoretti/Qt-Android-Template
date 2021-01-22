@@ -13,7 +13,6 @@ HEADERS += \
     src/system.h
 
 SOURCES += \
-    src/iconprovider.cpp \
     src/main.cpp \
     src/settings.cpp \
     src/appdata.cpp \
