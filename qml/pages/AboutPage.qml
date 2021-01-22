@@ -41,7 +41,7 @@ AppStackPage {
                 }
 
                 LabelBody {
-                    text: "Qt 5.12.2<br>"
+                    text: "Qt 5.15.2<br>"
                           + "Copyright 2008-2019 The Qt Company Ltd."
                           + " All rights reserved."
                     wrapMode: Text.WordWrap
