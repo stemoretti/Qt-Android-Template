@@ -1,15 +1,19 @@
-import QtQuick 2.12
-import QtQuick.Layouts 1.12
-import QtQuick.Controls 2.5
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 import "../common"
 import "../languages.js" as JS
 
+import Settings 1.0
+
 AppStackPage {
+    id: root
+
     property int continent: 0
 
     function back() {
-        return StackView.view.replace(Qt.resolvedUrl("SettingsContinentsPage.qml"),
-                                      StackView.PopTransition)
+        return replace(Qt.resolvedUrl("SettingsContinentsPage.qml"),
+                       StackView.PopTransition)
     }
 
     title: qsTr("Countries")
@@ -18,9 +22,10 @@ AppStackPage {
     ListView {
         anchors.fill: parent
         model: JS.regions[continent].countries.map(function (o) { return o.code })
+        reuseItems: true
 
         delegate: ItemDelegate {
-            width: parent.width
+            width: root.width
             contentItem: ColumnLayout {
                 spacing: 0
                 LabelSubheading {
@@ -32,7 +37,7 @@ AppStackPage {
                 }
             }
             onClicked: {
-                appSettings.country = modelData
+                Settings.country = modelData
                 pop()
             }
         }

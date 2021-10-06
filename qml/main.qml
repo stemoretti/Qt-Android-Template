@@ -1,7 +1,7 @@
-import QtQuick 2.12
-import QtQuick.Layouts 1.12
-import QtQuick.Controls 2.5
-import QtQuick.Controls.Material 2.3
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
+import QtQuick.Controls.Material
 import "common"
 import "pages"
 
@@ -9,20 +9,14 @@ App {
     id: appWindow
 
     title: "Android Qml Template"
-    header: pageStack.currentItem.appToolBar
+    header: pageStack.currentItem ? pageStack.currentItem.appToolBar : null
     width: 360
     height: 480
 
     StackView {
         id: pageStack
         anchors.fill: parent
-        initialItem: Qt.resolvedUrl("pages/HomePage.qml")
-        onCurrentItemChanged: {
-            if (currentItem) {
-                currentItem.canNavigateBack = depth > 1
-                currentItem.forceActiveFocus()
-            }
-        }
+        initialItem: "./pages/HomePage.qml"
     }
 
     Drawer {

@@ -5,6 +5,9 @@
 #include <QColor>
 #include <QString>
 
+class QQmlEngine;
+class QJSEngine;
+
 class Settings : public QObject
 {
     Q_OBJECT
@@ -18,43 +21,33 @@ class Settings : public QObject
 public:
     virtual ~Settings();
 
-    static Settings &instance();
+    static Settings *instance();
+    static QObject *singletonProvider(QQmlEngine *qmlEngine, QJSEngine *jsEngine);
 
     void readSettingsFile();
-
-    //{{{ Properties getters declarations
+    void writeSettingsFile() const;
 
     bool darkTheme() const;
+    void setDarkTheme(bool darkTheme);
+
     QColor primaryColor() const;
+    void setPrimaryColor(const QColor &primaryColor);
+
     QColor accentColor() const;
+    void setAccentColor(const QColor &accentColor);
+
     QString language() const;
+    void setLanguage(const QString &language);
+
     QString country() const;
+    void setCountry(const QString &country);
 
-    //}}} Properties getters declarations
-
-signals:
-    //{{{ Properties signals
-
+Q_SIGNALS:
     void darkThemeChanged(bool darkTheme);
     void primaryColorChanged(QColor primaryColor);
     void accentColorChanged(QColor accentColor);
     void languageChanged(QString language);
     void countryChanged(const QString &country);
-
-    //}}} Properties signals
-
-public slots:
-    void writeSettingsFile() const;
-
-    //{{{ Properties setters declarations
-
-    void setDarkTheme(bool darkTheme);
-    void setPrimaryColor(const QColor &primaryColor);
-    void setAccentColor(const QColor &accentColor);
-    void setLanguage(const QString &language);
-    void setCountry(const QString &country);
-
-    //}}} Properties setters declarations
 
 private:
     explicit Settings(QObject *parent = nullptr);
@@ -62,15 +55,11 @@ private:
 
     QString m_settingsFilePath;
 
-    //{{{ Properties declarations
-
     bool m_darkTheme;
     QColor m_primaryColor;
     QColor m_accentColor;
     QString m_language;
     QString m_country;
-
-    //}}} Properties declarations
 };
 
 #endif // SETTINGS_H

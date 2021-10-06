@@ -1,10 +1,11 @@
-import QtQuick 2.12
-import QtQuick.Layouts 1.12
-import QtQuick.Controls 2.5
-import QtQuick.Controls.Material 2.3
-import QtQml.Models 2.12
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
+import QtQuick.Controls.Material
+import QtQml.Models
 import "../common"
-import "../popups"
+
+import AppData
 
 AppStackPage {
     id: root
@@ -51,9 +52,9 @@ AppStackPage {
                         anchors.fill: parent
                         selectByMouse: true
                         inputMethodHints: Qt.ImhNoPredictiveText
-                        text: appData.message
+                        text: AppData.message
                         onEditingFinished: {
-                            appData.message = text
+                            AppData.message = text
                             focus = false
                         }
                     }
@@ -77,7 +78,7 @@ AppStackPage {
         MenuItem {
             text: qsTr("Send Notification")
             onTriggered: {
-                appData.sendNotification(appData.message)
+                AppData.sendNotification(AppData.message)
             }
         }
     }

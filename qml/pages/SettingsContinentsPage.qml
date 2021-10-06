@@ -1,6 +1,6 @@
-import QtQuick 2.12
-import QtQuick.Layouts 1.12
-import QtQuick.Controls 2.5
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 import "../common"
 import "../languages.js" as JS
 
@@ -14,7 +14,6 @@ AppStackPage {
 
         delegate: ItemDelegate {
             width: parent.width
-//            height: 50
             contentItem: LabelSubheading {
                 text: modelData
             }

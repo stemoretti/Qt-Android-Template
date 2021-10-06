@@ -1,9 +1,10 @@
-import QtQuick 2.12
-import QtQuick.Layouts 1.12
-import QtQuick.Controls 2.5
-import QtQml 2.12
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
+import QtQml
 import "../common"
-import "../popups"
+
+import AppData
 
 AppStackPage {
     title: qsTr("Speech Recognition")
@@ -12,13 +13,13 @@ AppStackPage {
     rightButtons: [
         Action {
             icon.source: "image://icon/mic"
-            onTriggered: appData.startSpeechRecognizer();
+            onTriggered: AppData.startSpeechRecognizer();
         }
     ]
 
     Connections {
-        target: appData
-        onSpeechRecognized: speechTextArea.text = result
+        target: AppData
+        function onSpeechRecognized(result) { speechTextArea.text = result }
     }
 
     Flickable {
@@ -45,7 +46,6 @@ AppStackPage {
                         textFormat: TextEdit.PlainText
                         wrapMode: TextEdit.WordWrap
                         anchors.fill: parent
-//                        selectByMouse: false
                     }
                 }
             }

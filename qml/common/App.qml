@@ -1,11 +1,12 @@
-import QtQuick 2.12
-import QtQuick.Controls 2.5
-import QtQuick.Controls.Material 2.3
-import "../popups"
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Controls.Material
+
+import Settings
 
 ApplicationWindow {
     property bool isLandscape: width > height
-    property bool isDarkTheme: appSettings.darkTheme
+    property bool isDarkTheme: Settings.darkTheme
 
     // ui constants
     property color primaryColor: Material.primary
@@ -24,9 +25,6 @@ ApplicationWindow {
     property color popupTextColor: isDarkTheme ? "#FFFFFF" : "#424242"
     property color toastColor: isDarkTheme ? "Darkgrey" : "#323232"
     property real toastOpacity: isDarkTheme ? 0.9 : 0.75
-
-//    property color dropShadow: isDarkTheme ? "#E4E4E4" : Material.dropShadowColor
-    property color dropShadow: Material.dropShadowColor
 
     // font sizes - defaults from Google Material Design Guide
     property int fontSizeDisplay4: 112
@@ -52,76 +50,18 @@ ApplicationWindow {
     property real opacityBodyAndButton: primaryTextOpacity
     property real opacityBodySecondary: secondaryTextOpacity
     property real opacityCaption: secondaryTextOpacity
-    property var currentLocale: Qt.locale(appSettings.country)
+
+    property var currentLocale: Qt.locale(Settings.country)
 
     function isDarkColor(color) {
         var a = 1.0 - (0.299 * color.r + 0.587 * color.g + 0.114 * color.b)
         return color.a > 0.0 && a >= 0.3
     }
 
-    function dateTimeString(datetime, format) {
-        if (datetime === undefined)
-            return ""
-        if (format === undefined)
-            format = Locale.ShortFormat
-        return datetime.toLocaleString(currentLocale, format)
-    }
-
-    function dateString(date, format) {
-        if (date === undefined)
-            return ""
-        if (format === undefined)
-            format = Locale.ShortFormat
-        return date.toLocaleDateString(currentLocale, format)
-    }
-
-    function timeString(time, format) {
-        if (time === undefined)
-            return ""
-        if (format === undefined)
-            format = Locale.ShortFormat
-        return time.toLocaleTimeString(currentLocale, format)
-    }
-
-    function showToast(info) {
-        popupToast.start(info)
-    }
-    function showError(info) {
-        popupError.start(info)
-    }
-
-    function showInfo(info) {
-        popupInfo.text = info
-        popupInfo.buttonText = qsTr("OK")
-        popupInfo.open()
-    }
-
     visible: true
-    title: qsTr("App")
     locale: Qt.locale("en_US")
 
-    Material.primary: appSettings.primaryColor
-    Material.accent: appSettings.accentColor
-    Material.theme: appSettings.darkTheme ? Material.Dark : Material.Light
-
-    // APP WINDOW POPUPS
-    PopupExit {
-        id: popupExitApp
-        onAboutToHide: {
-            popupExitApp.stopTimer()
-            if (popupExitApp.isExit) {
-                Qt.quit()
-            }
-        }
-    }
-    PopupInfo {
-        id: popupInfo
-    }
-    PopupToast {
-        id: popupToast
-    }
-    PopupError {
-        id: popupError
-    }
-    // end APP WINDOW POPUPS
+    Material.primary: Settings.primaryColor
+    Material.accent: Settings.accentColor
+    Material.theme: Settings.darkTheme ? Material.Dark : Material.Light
 }

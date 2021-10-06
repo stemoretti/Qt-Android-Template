@@ -2,20 +2,11 @@
     <qresource prefix="/">
         <file>qml/languages.js</file>
         <file>qml/main.qml</file>
-        <file>qml/common/HorizontalListDivider.qml</file>
         <file>qml/common/HorizontalDivider.qml</file>
         <file>qml/common/ButtonFlat.qml</file>
-        <file>qml/common/ButtonRaised.qml</file>
-        <file>qml/popups/PopupToast.qml</file>
-        <file>qml/popups/PopupInfo.qml</file>
-        <file>qml/popups/PopupError.qml</file>
-        <file>qml/popups/PopupExit.qml</file>
         <file>qml/common/LabelBody.qml</file>
-        <file>qml/common/LabelBodySecondary.qml</file>
         <file>qml/common/LabelSubheading.qml</file>
         <file>qml/common/LabelTitle.qml</file>
-        <file>qml/popups/DatePicker.qml</file>
-        <file>qml/popups/TimePicker.qml</file>
         <file>qml/common/App.qml</file>
         <file>qml/common/AppStackPage.qml</file>
         <file>qml/common/AppToolBar.qml</file>

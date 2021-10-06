@@ -4,7 +4,7 @@ TARGET = androidqmltemplate
 
 QT += qml quick quickcontrols2
 
-CONFIG += c++11
+CONFIG += c++17 lrelease embed_translations
 
 HEADERS += \
     src/iconprovider.h \
@@ -23,7 +23,6 @@ OTHER_FILES += \
 
 RESOURCES += \
     qml.qrc \
-    translations.qrc \
     icons.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
@@ -43,49 +42,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-# T R A N S L A T I O N S
-
-# if languages are added:
-# 1. rebuild project to generate *.qm
-# 2. add existing .qm files to translations.qrc
-
-# if changes to translatable strings:
-# 1. Run Tools-External-Linguist-Update
-# 2. Run Linguist and do translations
-# 3. Build and run on iOS and Android to verify translations
-# 4. Optional: if translations not done: Run Tools-External-Linguist-Release
-
-# Supported languages
-LANGUAGES = it
-
-# used to create .ts files
-defineReplace(prependAll) {
-    for(a,$$1):result += $$2$${a}$$3
-    return($$result)
-}
-# Available translations
-#tsroot = $$join(TARGET,,,.ts)
-tstarget = $$join(TARGET,,,_)
-#TRANSLATIONS = $$PWD/translations/$$tsroot
-TRANSLATIONS = $$prependAll(LANGUAGES, $$PWD/translations/$$tstarget, .ts)
-# run LRELEASE to generate the qm files
-qtPrepareTool(LRELEASE, lrelease)
-for(tsfile, TRANSLATIONS) {
-    command = $$LRELEASE $$tsfile
-    system($$command)|error("Failed to run: $$command")
-}
-
-DEFINES += 'AVAILABLE_TRANSLATIONS=\\\"\'$$LANGUAGES\'\\\"'
+TRANSLATIONS = \
+    translations/androidqmltemplate_it.ts
 
 android {
-    QT += androidextras
-
     # Android package sources
     ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
     DISTFILES += \
         android/AndroidManifest.xml \
         android/build.gradle \
+        android/gradle.properties \
         android/gradle/wrapper/gradle-wrapper.jar \
         android/gradle/wrapper/gradle-wrapper.properties \
         android/gradlew \
@@ -95,4 +62,6 @@ android {
 }
 
 # Default rules for deployment.
-include(deployment.pri)
+qnx: target.path = /tmp/$${TARGET}/bin
+else: unix:!android: target.path = /opt/$${TARGET}/bin
+!isEmpty(target.path): INSTALLS += target

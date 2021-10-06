@@ -1,7 +1,9 @@
-import QtQuick 2.12
-import QtQuick.Controls 2.5
-import QtQuick.Controls.Material 2.3
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Controls.Material
 import "../common"
+
+import Settings
 
 BaseModalPopup {
     property bool selectAccentColor: false
@@ -17,7 +19,7 @@ BaseModalPopup {
         anchors.fill: parent
         clip: true
         delegate: ItemDelegate {
-            width: parent.width
+            width: colorsList.width
             implicitHeight: 40
             Row {
                 spacing: 0
@@ -44,9 +46,9 @@ BaseModalPopup {
             }
             onClicked: {
                 if (selectAccentColor)
-                    appSettings.accentColor = Material.color(model.bg)
+                    Settings.accentColor = Material.color(model.bg)
                 else
-                    appSettings.primaryColor = Material.color(model.bg)
+                    Settings.primaryColor = Material.color(model.bg)
                 currentIndex = index
                 close()
             }

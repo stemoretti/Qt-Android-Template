@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>translations/androidqmltemplate_it.qm</file>
-    </qresource>
-</RCC>

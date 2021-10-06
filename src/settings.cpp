@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QQmlEngine>
 
 #include "system.h"
 
@@ -16,6 +17,7 @@ Settings::Settings(QObject *parent)
     , m_language("en")
     , m_country("en_US")
 {
+    QQmlEngine::setObjectOwnership(this, QQmlEngine::CppOwnership);
     m_settingsFilePath = System::dataRoot() + "/settings.json";
 }
 
@@ -24,11 +26,18 @@ Settings::~Settings()
     writeSettingsFile();
 }
 
-Settings &Settings::instance()
+Settings *Settings::instance()
 {
-    static Settings instance;
+    static Settings s;
+    return &s;
+}
 
-    return instance;
+QObject *Settings::singletonProvider(QQmlEngine *qmlEngine, QJSEngine *jsEngine)
+{
+    Q_UNUSED(qmlEngine)
+    Q_UNUSED(jsEngine)
+
+    return instance();
 }
 
 void Settings::readSettingsFile()
@@ -87,8 +96,6 @@ void Settings::writeSettingsFile() const
     qDebug() << "Settings file saved";
 }
 
-//{{{ Properties getters/setters definitions
-
 bool Settings::darkTheme() const
 {
     return m_darkTheme;
@@ -100,7 +107,7 @@ void Settings::setDarkTheme(bool darkTheme)
         return;
 
     m_darkTheme = darkTheme;
-    emit darkThemeChanged(m_darkTheme);
+    Q_EMIT darkThemeChanged(m_darkTheme);
 }
 
 QColor Settings::primaryColor() const
@@ -114,7 +121,7 @@ void Settings::setPrimaryColor(const QColor &primaryColor)
         return;
 
     m_primaryColor = primaryColor;
-    emit primaryColorChanged(m_primaryColor);
+    Q_EMIT primaryColorChanged(m_primaryColor);
 }
 
 QColor Settings::accentColor() const
@@ -128,7 +135,7 @@ void Settings::setAccentColor(const QColor &accentColor)
         return;
 
     m_accentColor = accentColor;
-    emit accentColorChanged(m_accentColor);
+    Q_EMIT accentColorChanged(m_accentColor);
 }
 
 QString Settings::language() const
@@ -142,7 +149,7 @@ void Settings::setLanguage(const QString &language)
         return;
 
     m_language = language;
-    emit languageChanged(m_language);
+    Q_EMIT languageChanged(m_language);
 }
 
 QString Settings::country() const
@@ -156,7 +163,5 @@ void Settings::setCountry(const QString &country)
         return;
 
     m_country = country;
-    emit countryChanged(m_country);
+    Q_EMIT countryChanged(m_country);
 }
-
-//}}} Properties getters/setters definitions

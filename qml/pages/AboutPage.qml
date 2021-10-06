@@ -1,6 +1,6 @@
-import QtQuick 2.12
-import QtQuick.Layouts 1.12
-import QtQuick.Controls 2.5
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 import "../common"
 
 AppStackPage {
@@ -41,8 +41,8 @@ AppStackPage {
                 }
 
                 LabelBody {
-                    text: "Qt 5.15.2<br>"
-                          + "Copyright 2008-2019 The Qt Company Ltd."
+                    text: "Qt 6<br>"
+                          + "Copyright 2008-2021 The Qt Company Ltd."
                           + " All rights reserved."
                     wrapMode: Text.WordWrap
                     Layout.fillWidth: true

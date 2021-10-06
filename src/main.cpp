@@ -1,6 +1,5 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <QQmlContext>
 #include <QQuickStyle>
 #include <QTranslator>
 #include <QScopedPointer>
@@ -14,7 +13,6 @@
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #ifdef QT_DEBUG
     qputenv("QML_DISABLE_DISK_CACHE", "true");
 #endif
@@ -31,33 +29,38 @@ int main(int argc, char *argv[])
 
     qDebug() << "Available translations:" << System::translations();
     QScopedPointer<QTranslator> translator;
-    QObject::connect(&Settings::instance(), &Settings::languageChanged,
-                     [&engine, &translator] (QString language) {
+    QObject::connect(Settings::instance(), &Settings::languageChanged,
+                     [&engine, &translator](QString language) {
         if (!translator.isNull()) {
             QCoreApplication::removeTranslator(translator.data());
             translator.reset();
         }
         if (language != "en") {
             translator.reset(new QTranslator);
-            if (translator->load(QLocale(language), "androidqmltemplate", "_", ":/translations"))
+            if (translator->load(QLocale(language), "androidqmltemplate", "_", ":/i18n"))
                 QCoreApplication::installTranslator(translator.data());
         }
         engine.retranslate();
     });
 
-    Settings::instance().readSettingsFile();
+    Settings::instance()->readSettingsFile();
 
-    QQmlContext *context = engine.rootContext();
-    context->setContextProperty("appData", &AppData::instance());
-    context->setContextProperty("appSettings", &Settings::instance());
-    context->setContextProperty("appTranslations", System::translations());
+    qmlRegisterSingletonType<AppData>("AppData", 1, 0, "AppData", AppData::singletonProvider);
+    qmlRegisterSingletonType<Settings>("Settings", 1, 0, "Settings", Settings::singletonProvider);
+    qmlRegisterSingletonType<System>("System", 1, 0, "System", System::singletonProvider);
 
-    engine.load(QUrl("qrc:/qml/main.qml"));
+    QUrl url("qrc:/qml/main.qml");
+    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
+                     &app, [url](QObject *obj, const QUrl &objUrl) {
+        if (!obj && url == objUrl)
+            QCoreApplication::exit(-1);
+    }, Qt::QueuedConnection);
+    engine.load(url);
 
     QObject::connect(&app, &QGuiApplication::applicationStateChanged,
-                     [] (Qt::ApplicationState state) {
+                     [](Qt::ApplicationState state) {
         if (state == Qt::ApplicationSuspended) {
-            Settings::instance().writeSettingsFile();
+            Settings::instance()->writeSettingsFile();
         }
     });
 

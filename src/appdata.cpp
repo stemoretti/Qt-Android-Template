@@ -1,14 +1,12 @@
 #include "appdata.h"
 
 #include <QDir>
-#include <QJsonObject>
-#include <QJsonDocument>
-#include <QJsonArray>
 #include <QDebug>
+#include <QQmlEngine>
 
 #ifdef Q_OS_ANDROID
-#include <QAndroidJniObject>
-#include <QtAndroid>
+#include <QJniObject>
+#include <QCoreApplication>
 #endif
 
 #include "system.h"
@@ -17,6 +15,8 @@ AppData::AppData(QObject *parent)
     : QObject(parent)
     , m_message("Message from C++")
 {
+    QQmlEngine::setObjectOwnership(this, QQmlEngine::CppOwnership);
+
     if (!checkDirs())
         qFatal("App won't work - cannot create data directory.");
 }
@@ -25,11 +25,18 @@ AppData::~AppData()
 {
 }
 
-AppData &AppData::instance()
+AppData *AppData::instance()
 {
-    static AppData instance;
+    static AppData s;
+    return &s;
+}
 
-    return instance;
+QObject *AppData::singletonProvider(QQmlEngine *qmlEngine, QJSEngine *jsEngine)
+{
+    Q_UNUSED(qmlEngine)
+    Q_UNUSED(jsEngine)
+
+    return instance();
 }
 
 bool AppData::checkDirs() const
@@ -54,27 +61,28 @@ Java_com_github_stemoretti_androidqmltemplate_MainActivity_sendResult(JNIEnv *en
                                                                       jobject obj,
                                                                       jstring text)
 {
-    Q_UNUSED(env);
-    Q_UNUSED(obj);
-    auto result = QAndroidJniObject(text).toString();
+    Q_UNUSED(env)
+    Q_UNUSED(obj)
+
+    auto result = QJniObject(text).toString();
     if (!result.isEmpty())
-        emit AppData::instance().speechRecognized(result);
+        Q_EMIT AppData::instance()->speechRecognized(result);
 }
 
 void AppData::startSpeechRecognizer() const
 {
-    QtAndroid::androidActivity().callMethod<void>("getSpeechInput", "()V");
+    QJniObject activity = QNativeInterface::QAndroidApplication::context();
+    activity.callMethod<void>("getSpeechInput", "()V");
 }
 
 void AppData::sendNotification(const QString &s) const
 {
-    auto javaNotification = QAndroidJniObject::fromString(s);
-    QtAndroid::androidActivity().callMethod<void>("notify", "(Ljava/lang/String;)V",
-                                                  javaNotification.object<jstring>());
+    auto javaNotification = QJniObject::fromString(s);
+    QJniObject activity = QNativeInterface::QAndroidApplication::context();
+    activity.callMethod<void>("notify", "(Ljava/lang/String;)V",
+                              javaNotification.object<jstring>());
 }
 #endif
-
-//{{{ Properties getters/setters definitions
 
 QString AppData::message() const
 {
@@ -87,7 +95,5 @@ void AppData::setMessage(const QString &message)
         return;
 
     m_message = message;
-    emit messageChanged(m_message);
+    Q_EMIT messageChanged(m_message);
 }
-
-//}}} Properties getters/setters definitions

@@ -1,9 +1,12 @@
-import QtQuick 2.12
-import QtQuick.Layouts 1.12
-import QtQuick.Controls 2.5
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 import "../common"
 import "../popups"
 import "../languages.js" as JS
+
+import Settings 1.0
+import System 1.0
 
 AppStackPage {
     title: qsTr("Settings")
@@ -25,12 +28,12 @@ AppStackPage {
 
                 SettingsItem {
                     title: qsTr("Dark Theme")
-                    subtitle: appSettings.darkTheme ?
+                    subtitle: Settings.darkTheme ?
                                   qsTr("Dark theme is enabled") :
                                   qsTr("Dark theme is disabled")
                     check.visible: true
-                    check.checked: appSettings.darkTheme
-                    check.onClicked: appSettings.darkTheme = !appSettings.darkTheme
+                    check.checked: Settings.darkTheme
+                    check.onClicked: Settings.darkTheme = !Settings.darkTheme
                     onClicked: check.clicked()
                 }
 
@@ -50,13 +53,13 @@ AppStackPage {
 
                 SettingsItem {
                     title: qsTr("Language")
-                    subtitle: JS.getLanguageFromCode(appSettings.language)
+                    subtitle: JS.getLanguageFromCode(Settings.language)
                     onClicked: languagePopup.open()
                 }
 
                 SettingsItem {
-                    property string name: JS.getCountryFromCode(appSettings.country)
-                    property string nativeName: JS.getCountryFromCode(appSettings.country, "native")
+                    property string name: JS.getCountryFromCode(Settings.country)
+                    property string nativeName: JS.getCountryFromCode(Settings.country, "native")
 
                     title: qsTr("Country")
                     subtitle: nativeName + ((name !== nativeName) ? " (" + name + ")" : "")
@@ -79,15 +82,15 @@ AppStackPage {
     ListPopup {
         id: languagePopup
 
-        model: appTranslations
+        model: System.translations()
         delegateFunction: JS.getLanguageFromCode
-        onClicked: {
-            appSettings.language = data
+        onClicked: function(data, index) {
+            Settings.language = data
             currentIndex = index
             close()
         }
         Component.onCompleted: {
-            currentIndex = model.indexOf(appSettings.language)
+            currentIndex = model.indexOf(Settings.language)
         }
     }
 }
