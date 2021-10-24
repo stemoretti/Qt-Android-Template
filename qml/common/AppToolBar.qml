@@ -15,25 +15,25 @@ ToolBar {
 
         ToolButton {
             icon.source: leftButton ? leftButton.icon.source : ""
-            icon.color: textOnPrimary
+            icon.color: Style.textOnPrimary
             focusPolicy: Qt.NoFocus
-            opacity: opacityTitle
+            opacity: Style.opacityTitle
             enabled: leftButton && leftButton.enabled
             onClicked: leftButton.trigger()
         }
         LabelTitle {
             id: titleLabel
             elide: Label.ElideRight
-            color: textOnPrimary
+            color: Style.textOnPrimary
             Layout.fillWidth: true
         }
         Repeater {
             model: rightButtons.length
             delegate: ToolButton {
                 icon.source: rightButtons[index].icon.source
-                icon.color: textOnPrimary
+                icon.color: Style.textOnPrimary
                 focusPolicy: Qt.NoFocus
-                opacity: opacityTitle
+                opacity: Style.opacityTitle
                 enabled: rightButtons[index].enabled
                 onClicked: rightButtons[index].trigger()
             }

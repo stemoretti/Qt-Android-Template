@@ -1,7 +1,6 @@
 // ekke (Ekkehard Gentz) @ekkescorner
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Controls.Material
 import QtQuick.Layouts
 Item {
     height: 8
@@ -13,7 +12,7 @@ Item {
     Rectangle {
         width: parent.width
         height: 1
-        opacity: dividerOpacity
-        color: dividerColor
+        opacity: Style.dividerOpacity
+        color: Style.dividerColor
     }
 }

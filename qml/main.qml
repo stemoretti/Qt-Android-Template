@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-import QtQuick.Controls.Material
 import "common"
 import "pages"
 
@@ -9,15 +8,10 @@ App {
     id: appWindow
 
     title: "Android Qml Template"
-    header: pageStack.currentItem ? pageStack.currentItem.appToolBar : null
     width: 360
     height: 480
 
-    StackView {
-        id: pageStack
-        anchors.fill: parent
-        initialItem: "./pages/HomePage.qml"
-    }
+    initialPage: HomePage {}
 
     Drawer {
         id: navDrawer
@@ -41,13 +35,15 @@ App {
 
                 Rectangle {
                     id: topItem
+
                     height: 140
-                    color: primaryColor
+                    color: Style.primaryColor
                     Layout.fillWidth: true
+
                     Text {
                         text: appWindow.title
-                        color: textOnPrimary
-                        font.pixelSize: fontSizeHeadline
+                        color: Style.textOnPrimary
+                        font.pixelSize: Style.fontSizeHeadline
                         wrapMode: Text.WordWrap
                         anchors {
                             left: parent.left

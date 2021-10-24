@@ -16,9 +16,11 @@
         <file>qml/pages/SpeechRecognitionPage.qml</file>
         <file>qml/popups/ColorSelectionPopup.qml</file>
         <file>qml/common/SettingsItem.qml</file>
+        <file>qml/common/Style.qml</file>
         <file>qml/popups/BaseModalPopup.qml</file>
         <file>qml/popups/ListPopup.qml</file>
         <file>qml/pages/SettingsContinentsPage.qml</file>
         <file>qml/pages/SettingsCountriesPage.qml</file>
+        <file>qml/common/qmldir</file>
     </qresource>
 </RCC>

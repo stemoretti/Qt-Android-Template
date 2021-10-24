@@ -27,7 +27,7 @@ AppStackPage {
                 LabelBody {
                     text: "<a href='http://github.com/stemoretti/androidqmltemplate'>"
                           + "github.com/stemoretti/androidqmltemplate</a>"
-                    linkColor: isDarkTheme ? "lightblue" : "blue"
+                    linkColor: Style.isDarkTheme ? "lightblue" : "blue"
                     Layout.alignment: Qt.AlignHCenter
                     onLinkActivated: Qt.openUrlExternally(link)
                 }
@@ -62,7 +62,7 @@ AppStackPage {
                           + " icons are under Apache license version 2.0"
                     wrapMode: Text.WordWrap
                     Layout.fillWidth: true
-                    linkColor: isDarkTheme ? "lightblue" : "blue"
+                    linkColor: Style.isDarkTheme ? "lightblue" : "blue"
                     onLinkActivated: Qt.openUrlExternally(link)
                 }
 
@@ -70,7 +70,7 @@ AppStackPage {
 
                 LabelBody {
                     text: "<a href='https://www.github.com/ekke'>github.com/ekke</a>"
-                    linkColor: isDarkTheme ? "lightblue" : "blue"
+                    linkColor: Style.isDarkTheme ? "lightblue" : "blue"
                     onLinkActivated: Qt.openUrlExternally(link)
                     Layout.alignment: Qt.AlignHCenter
                 }

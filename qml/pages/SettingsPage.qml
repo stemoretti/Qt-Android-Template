@@ -5,8 +5,8 @@ import "../common"
 import "../popups"
 import "../languages.js" as JS
 
-import Settings 1.0
-import System 1.0
+import Settings
+import System
 
 AppStackPage {
     title: qsTr("Settings")
@@ -39,13 +39,13 @@ AppStackPage {
 
                 SettingsItem {
                     title: qsTr("Primary Color")
-                    subtitle: primaryColorPopup.model.get(primaryColorPopup.currentIndex).title
+                    subtitle: primaryColorPopup.currentColorName
                     onClicked: primaryColorPopup.open()
                 }
 
                 SettingsItem {
                     title: qsTr("Accent Color")
-                    subtitle: accentColorPopup.model.get(accentColorPopup.currentIndex).title
+                    subtitle: accentColorPopup.currentColorName
                     onClicked: accentColorPopup.open()
                 }
 
@@ -71,12 +71,15 @@ AppStackPage {
 
     ColorSelectionPopup {
         id: primaryColorPopup
+        currentColor: Settings.primaryColor
+        onColorSelected: function(c) { Settings.primaryColor = c }
     }
 
     ColorSelectionPopup {
         id: accentColorPopup
         selectAccentColor: true
-        currentColor: accentColor
+        currentColor: Settings.accentColor
+        onColorSelected: function(c) { Settings.accentColor = c }
     }
 
     ListPopup {

@@ -8,21 +8,19 @@ ItemDelegate {
     property alias check: settingSwitch
 
     Layout.fillWidth: true
-    RowLayout {
-        width: parent.width
-        anchors.verticalCenter: parent.verticalCenter
+
+    contentItem: RowLayout {
         ColumnLayout {
-            spacing: 0
             LabelSubheading {
                 id: titleLabel
-                topPadding: 10
-                leftPadding: 20
+                wrapMode: Text.WordWrap
+                Layout.fillWidth: true
             }
             LabelBody {
                 id: subtitleLabel
-                leftPadding: 20
-                bottomPadding: 10
                 opacity: 0.6
+                wrapMode: Text.WordWrap
+                Layout.fillWidth: true
             }
         }
         Item {
@@ -30,7 +28,6 @@ ItemDelegate {
         }
         Switch {
             id: settingSwitch
-            rightPadding: 20
             visible: false
         }
     }

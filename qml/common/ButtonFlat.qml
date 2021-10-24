@@ -17,7 +17,7 @@ Button {
         id: buttonText
         text: button.text
         opacity: enabled ? 1.0 : 0.3
-        color: flatButtonTextColor
+        color: Style.flatButtonTextColor
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight

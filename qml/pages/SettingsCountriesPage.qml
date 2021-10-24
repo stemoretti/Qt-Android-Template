@@ -4,7 +4,7 @@ import QtQuick.Controls
 import "../common"
 import "../languages.js" as JS
 
-import Settings 1.0
+import Settings
 
 AppStackPage {
     id: root

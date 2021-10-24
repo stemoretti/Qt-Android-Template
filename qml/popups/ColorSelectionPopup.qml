@@ -1,17 +1,18 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
+import QtQuick.Layouts
 import "../common"
-
-import Settings
 
 BaseModalPopup {
     property bool selectAccentColor: false
-    property color currentColor: primaryColor
+    property color currentColor: Material.primary
+    property string currentColorName: colorModel.get(currentIndex).title
     property int currentIndex: 0
-    property alias model: colorModel
 
-    implicitWidth: appWindow.width * 0.9
+    signal colorSelected(color c)
+
+    implicitWidth: parent.width * 0.9
     contentHeight: colorsList.contentHeight
 
     ListView {
@@ -20,35 +21,29 @@ BaseModalPopup {
         clip: true
         delegate: ItemDelegate {
             width: colorsList.width
-            implicitHeight: 40
-            Row {
+            contentItem: RowLayout {
                 spacing: 0
-                topPadding: 8
-                leftPadding: 10
                 Rectangle {
                     visible: selectAccentColor
-                    anchors.verticalCenter: parent.verticalCenter
-                    implicitHeight: 32
-                    implicitWidth: 48
-                    color: primaryColor
+                    color: Material.primary
+                    Layout.margins: 0
+                    Layout.minimumHeight: 32
+                    Layout.minimumWidth: 48
                 }
                 Rectangle {
-                    anchors.verticalCenter: parent.verticalCenter
-                    implicitHeight: 32
-                    implicitWidth: 32
                     color: Material.color(model.bg)
+                    Layout.margins: 0
+                    Layout.minimumHeight: 32
+                    Layout.minimumWidth: 32
                 }
                 LabelBody {
-                    leftPadding: 10
-                    anchors.verticalCenter: parent.verticalCenter
                     text: model.title
+                    Layout.leftMargin: 6
+                    Layout.fillWidth: true
                 }
             }
             onClicked: {
-                if (selectAccentColor)
-                    Settings.accentColor = Material.color(model.bg)
-                else
-                    Settings.primaryColor = Material.color(model.bg)
+                colorSelected(Material.color(model.bg))
                 currentIndex = index
                 close()
             }
@@ -77,6 +72,7 @@ BaseModalPopup {
             ListElement { title: qsTr("Material BlueGrey"); bg: Material.BlueGrey }
         }
     }
+
     Component.onCompleted: {
         for (var i = 0; i < colorModel.count; ++i) {
             var tmp = colorModel.get(i)

@@ -5,5 +5,5 @@ import QtQuick.Controls
 
 Label {
 //    Layout.fillWidth: true
-    opacity: opacityBodyAndButton
+    opacity: Style.opacityBodyAndButton
 }

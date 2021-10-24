@@ -20,7 +20,7 @@ Page {
         pop()
     }
 
-    Keys.onBackPressed: {
+    Keys.onBackPressed: function(event) {
         if (stack.depth > 1) {
             event.accepted = true
             back()
