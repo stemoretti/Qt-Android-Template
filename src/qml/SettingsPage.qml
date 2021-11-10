@@ -1,16 +1,34 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-import "../common"
-import "../popups"
-import "../languages.js" as JS
 
 import Settings
-import System
 
 AppStackPage {
     title: qsTr("Settings")
     padding: 0
+
+    function getLanguageFromCode(code)
+    {
+        var languages = [
+            { "code": "en", "name": "English", "nativeName": "English" },
+            { "code": "it", "name": "Italian", "nativeName": "Italiano" },
+        ]
+        var codes = languages.map(o => o.code)
+        var i = codes.indexOf(code)
+
+        if (i < 0)
+            return ""
+
+        var name = languages[i].name
+        var nativeName = languages[i].nativeName
+
+        if (name !== nativeName) {
+            name = nativeName + " (" + name + ")"
+        }
+
+        return name
+    }
 
     Flickable {
         contentHeight: settingsPane.implicitHeight
@@ -53,17 +71,8 @@ AppStackPage {
 
                 SettingsItem {
                     title: qsTr("Language")
-                    subtitle: JS.getLanguageFromCode(Settings.language)
+                    subtitle: getLanguageFromCode(Settings.language)
                     onClicked: languagePopup.open()
-                }
-
-                SettingsItem {
-                    property string name: JS.getCountryFromCode(Settings.country)
-                    property string nativeName: JS.getCountryFromCode(Settings.country, "native")
-
-                    title: qsTr("Country")
-                    subtitle: nativeName + ((name !== nativeName) ? " (" + name + ")" : "")
-                    onClicked: push(Qt.resolvedUrl("SettingsContinentsPage.qml"))
                 }
             }
         }
@@ -85,8 +94,8 @@ AppStackPage {
     ListPopup {
         id: languagePopup
 
-        model: System.translations()
-        delegateFunction: JS.getLanguageFromCode
+        model: Settings.translations()
+        delegateFunction: getLanguageFromCode
         onClicked: function(data, index) {
             Settings.language = data
             currentIndex = index

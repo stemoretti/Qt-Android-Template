@@ -6,16 +6,12 @@
 #include <QDebug>
 #include <QFontDatabase>
 
-#include "appdata.h"
 #include "settings.h"
-#include "system.h"
 #include "iconprovider.h"
 
 int main(int argc, char *argv[])
 {
-#ifdef QT_DEBUG
-    qputenv("QML_DISABLE_DISK_CACHE", "true");
-#endif
+    QGuiApplication::setApplicationName("Qt Android Template");
     QGuiApplication app(argc, argv);
 
     if (QFontDatabase::addApplicationFont(":/icons/MaterialIcons-Regular.ttf") == -1)
@@ -27,7 +23,7 @@ int main(int argc, char *argv[])
 
     engine.addImageProvider("icon", new IconProvider("Material Icons", ":/icons/codepoints.json"));
 
-    qDebug() << "Available translations:" << System::translations();
+    qDebug() << "Available translations:" << Settings::translations();
     QScopedPointer<QTranslator> translator;
     QObject::connect(Settings::instance(), &Settings::languageChanged,
                      [&engine, &translator](QString language) {
@@ -37,7 +33,7 @@ int main(int argc, char *argv[])
         }
         if (language != "en") {
             translator.reset(new QTranslator);
-            if (translator->load(QLocale(language), "androidqmltemplate", "_", ":/i18n"))
+            if (translator->load(QLocale(language), "qt-android-template", "_", ":/i18n"))
                 QCoreApplication::installTranslator(translator.data());
         }
         engine.retranslate();
@@ -45,9 +41,7 @@ int main(int argc, char *argv[])
 
     Settings::instance()->readSettingsFile();
 
-    qmlRegisterSingletonType<AppData>("AppData", 1, 0, "AppData", AppData::singletonProvider);
     qmlRegisterSingletonType<Settings>("Settings", 1, 0, "Settings", Settings::singletonProvider);
-    qmlRegisterSingletonType<System>("System", 1, 0, "System", System::singletonProvider);
 
     QUrl url("qrc:/qml/main.qml");
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

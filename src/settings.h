@@ -16,7 +16,6 @@ class Settings : public QObject
     Q_PROPERTY(QColor primaryColor READ primaryColor WRITE setPrimaryColor NOTIFY primaryColorChanged)
     Q_PROPERTY(QColor accentColor READ accentColor WRITE setAccentColor NOTIFY accentColorChanged)
     Q_PROPERTY(QString language READ language WRITE setLanguage NOTIFY languageChanged)
-    Q_PROPERTY(QString country READ country WRITE setCountry NOTIFY countryChanged)
 
 public:
     virtual ~Settings();
@@ -39,15 +38,13 @@ public:
     QString language() const;
     void setLanguage(const QString &language);
 
-    QString country() const;
-    void setCountry(const QString &country);
+    Q_INVOKABLE static QStringList translations();
 
 Q_SIGNALS:
     void darkThemeChanged(bool darkTheme);
     void primaryColorChanged(QColor primaryColor);
     void accentColorChanged(QColor accentColor);
     void languageChanged(QString language);
-    void countryChanged(const QString &country);
 
 private:
     explicit Settings(QObject *parent = nullptr);
@@ -59,7 +56,6 @@ private:
     QColor m_primaryColor;
     QColor m_accentColor;
     QString m_language;
-    QString m_country;
 };
 
 #endif // SETTINGS_H

@@ -11,6 +11,7 @@ ItemDelegate {
 
     contentItem: RowLayout {
         ColumnLayout {
+            spacing: 2
             LabelSubheading {
                 id: titleLabel
                 wrapMode: Text.WordWrap

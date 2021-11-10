@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-import "../common"
 
 AppStackPage {
     title: qsTr("About")
@@ -20,13 +19,14 @@ AppStackPage {
                 width: parent.width
 
                 LabelTitle {
-                    text: "Android Qml Template"
+                    text: Qt.application.name
                     Layout.alignment: Qt.AlignHCenter
                 }
 
                 LabelBody {
-                    text: "<a href='http://github.com/stemoretti/androidqmltemplate'>"
-                          + "github.com/stemoretti/androidqmltemplate</a>"
+                    property string url: "http://github.com/stemoretti/qt-android-template"
+
+                    text: "<a href='" + url + "'>" + url + "</a>"
                     linkColor: Style.isDarkTheme ? "lightblue" : "blue"
                     Layout.alignment: Qt.AlignHCenter
                     onLinkActivated: Qt.openUrlExternally(link)
@@ -64,15 +64,6 @@ AppStackPage {
                     Layout.fillWidth: true
                     linkColor: Style.isDarkTheme ? "lightblue" : "blue"
                     onLinkActivated: Qt.openUrlExternally(link)
-                }
-
-                HorizontalDivider { }
-
-                LabelBody {
-                    text: "<a href='https://www.github.com/ekke'>github.com/ekke</a>"
-                    linkColor: Style.isDarkTheme ? "lightblue" : "blue"
-                    onLinkActivated: Qt.openUrlExternally(link)
-                    Layout.alignment: Qt.AlignHCenter
                 }
             }
         }

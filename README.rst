@@ -1,4 +1,4 @@
-Android Qml Template
+Qt Android Template
 ====================
 
 Template for creating Qt Quick applications for Android.

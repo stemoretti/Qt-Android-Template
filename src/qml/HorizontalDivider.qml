@@ -10,6 +10,7 @@ Item {
     // anchors.margins: 6
     // https://www.google.com/design/spec/components/dividers.html#dividers-types-of-dividers
     Rectangle {
+        anchors.centerIn: parent
         width: parent.width
         height: 1
         opacity: Style.dividerOpacity

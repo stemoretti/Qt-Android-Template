@@ -11,7 +11,7 @@ BaseModalPopup {
     signal clicked(var data, int index)
 
     implicitWidth: parent.width * 0.9
-    contentHeight: internalList.contentHeight
+    implicitHeight: Math.min(internalList.contentHeight, parent.height * 0.9)
 
     ListView {
         id: internalList

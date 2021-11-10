@@ -6,8 +6,10 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QQmlEngine>
-
-#include "system.h"
+#include <QLocale>
+#include <QStandardPaths>
+#include <QRegularExpression>
+#include <QDir>
 
 Settings::Settings(QObject *parent)
     : QObject(parent)
@@ -15,10 +17,19 @@ Settings::Settings(QObject *parent)
     , m_primaryColor("#607D8B") // Material.BlueGrey
     , m_accentColor("#FF9800") // Material.Orange
     , m_language("en")
-    , m_country("en_US")
 {
     QQmlEngine::setObjectOwnership(this, QQmlEngine::CppOwnership);
-    m_settingsFilePath = System::dataRoot() + "/settings.json";
+
+    QString path = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
+    m_settingsFilePath = path + "/settings.json";
+
+    QDir dir;
+    if (!dir.exists(path)) {
+        if (!dir.mkpath(path))
+            qWarning() << "Cannot create" << path;
+        else
+            qDebug() << "Created directory" << path;
+    }
 }
 
 Settings::~Settings()
@@ -49,9 +60,8 @@ void Settings::readSettingsFile()
     if (!readFile.exists()) {
         qWarning() << "Cannot find the settings file:" << m_settingsFilePath;
         qDebug() << "Using default settings values";
-        setCountry(System::locale());
-        if (System::translations().contains(System::language()))
-            setLanguage(System::language());
+        if (translations().contains(QLocale().name().left(2)))
+            setLanguage(QLocale().name().left(2));
         return;
     }
     if (!readFile.open(QIODevice::ReadOnly)) {
@@ -69,7 +79,6 @@ void Settings::readSettingsFile()
     setPrimaryColor(jobj["primaryColor"].toString());
     setAccentColor(jobj["accentColor"].toString());
     setLanguage(jobj["language"].toString());
-    setCountry(jobj["country"].toString());
 
     qDebug() << "Settings file read";
 }
@@ -89,7 +98,6 @@ void Settings::writeSettingsFile() const
     jobj["primaryColor"] = m_primaryColor.name(QColor::HexRgb);
     jobj["accentColor"] = m_accentColor.name(QColor::HexRgb);
     jobj["language"] = m_language;
-    jobj["country"] = m_country;
     writeFile.write(QJsonDocument(jobj).toJson());
     writeFile.close();
 
@@ -152,16 +160,17 @@ void Settings::setLanguage(const QString &language)
     Q_EMIT languageChanged(m_language);
 }
 
-QString Settings::country() const
+QStringList Settings::translations()
 {
-    return m_country;
-}
+    QDir translationsDir(":/i18n");
+    QStringList languages({ "en" });
 
-void Settings::setCountry(const QString &country)
-{
-    if (m_country == country)
-        return;
+    if (translationsDir.exists()) {
+        QStringList translations = translationsDir.entryList({ "*.qm" });
+        translations.replaceInStrings(QRegularExpression("[^_]+_(\\w+)\\.qm"), "\\1");
+        languages.append(translations);
+        languages.sort();
+    }
 
-    m_country = country;
-    Q_EMIT countryChanged(m_country);
+    return languages;
 }
