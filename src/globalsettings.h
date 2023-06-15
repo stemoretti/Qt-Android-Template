@@ -1,16 +1,20 @@
-#ifndef SETTINGS_H
-#define SETTINGS_H
+#ifndef GLOBAL_SETTINGS_H_
+#define GLOBAL_SETTINGS_H_
 
 #include <QObject>
 #include <QColor>
 #include <QString>
 
+#include <QtQml/qqmlregistration.h>
+
 class QQmlEngine;
 class QJSEngine;
 
-class Settings : public QObject
+class GlobalSettings : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_SINGLETON
 
     Q_PROPERTY(bool darkTheme READ darkTheme WRITE setDarkTheme NOTIFY darkThemeChanged)
     Q_PROPERTY(QColor primaryColor READ primaryColor WRITE setPrimaryColor NOTIFY primaryColorChanged)
@@ -18,13 +22,16 @@ class Settings : public QObject
     Q_PROPERTY(QString language READ language WRITE setLanguage NOTIFY languageChanged)
 
 public:
-    virtual ~Settings();
+    virtual ~GlobalSettings();
 
-    static Settings *instance();
-    static QObject *singletonProvider(QQmlEngine *qmlEngine, QJSEngine *jsEngine);
+    inline static GlobalSettings *instance;
+    static void init(QObject *parent) { instance = new GlobalSettings(parent); }
+    static GlobalSettings *create(QQmlEngine *, QJSEngine *) { return instance; }
 
-    void readSettingsFile();
-    void writeSettingsFile() const;
+    void loadSettings();
+    void saveSettings() const;
+
+    Q_INVOKABLE static QStringList translations();
 
     bool darkTheme() const;
     void setDarkTheme(bool darkTheme);
@@ -38,8 +45,6 @@ public:
     QString language() const;
     void setLanguage(const QString &language);
 
-    Q_INVOKABLE static QStringList translations();
-
 Q_SIGNALS:
     void darkThemeChanged(bool darkTheme);
     void primaryColorChanged(QColor primaryColor);
@@ -47,8 +52,8 @@ Q_SIGNALS:
     void languageChanged(QString language);
 
 private:
-    explicit Settings(QObject *parent = nullptr);
-    Q_DISABLE_COPY(Settings)
+    explicit GlobalSettings(QObject *parent = nullptr);
+    Q_DISABLE_COPY_MOVE(GlobalSettings)
 
     QString m_settingsFilePath;
 
@@ -58,4 +63,4 @@ private:
     QString m_language;
 };
 
-#endif // SETTINGS_H
+#endif

@@ -2,75 +2,81 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="it_IT" sourcelanguage="en_US">
 <context>
-    <name>AboutPage</name>
+    <name>InfoPage</name>
     <message>
-        <location filename="../src/qml/AboutPage.qml" line="6"/>
-        <source>About</source>
-        <translation>Informazioni App</translation>
-    </message>
-    <message>
-        <location filename="../src/qml/AboutPage.qml" line="38"/>
-        <source>This app is based on the following software:</source>
-        <translation>Questa app si basa sul software seguente:</translation>
+        <location filename="../qml/InfoPage.qml" line="10"/>
+        <source>Info</source>
+        <translation>Informazioni</translation>
     </message>
 </context>
 <context>
-    <name>HomePage</name>
+    <name>MainPage</name>
     <message>
-        <location filename="../src/qml/HomePage.qml" line="8"/>
-        <source>Home Page</source>
+        <location filename="../qml/MainPage.qml" line="11"/>
+        <source>Main Page</source>
         <translation>Pagina Principale</translation>
     </message>
     <message>
-        <location filename="../src/qml/HomePage.qml" line="85"/>
+        <location filename="../qml/MainPage.qml" line="55"/>
+        <source>Item</source>
+        <translation>Elemento</translation>
+    </message>
+    <message>
+        <location filename="../qml/MainPage.qml" line="98"/>
         <source>Settings</source>
         <translation>Impostazioni</translation>
     </message>
     <message>
-        <location filename="../src/qml/HomePage.qml" line="90"/>
-        <source>About</source>
-        <translation>Informazioni App</translation>
-    </message>
-    <message>
-        <location filename="../src/qml/HomePage.qml" line="125"/>
-        <source>Item</source>
-        <translation>Elemento</translation>
+        <location filename="../qml/MainPage.qml" line="103"/>
+        <source>Info</source>
+        <translation>Informazioni</translation>
     </message>
 </context>
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../src/qml/SettingsPage.qml" line="8"/>
+        <location filename="../qml/SettingsPage.qml" line="12"/>
         <source>Settings</source>
         <translation>Impostazioni</translation>
     </message>
     <message>
-        <location filename="../src/qml/SettingsPage.qml" line="50"/>
-        <source>Dark theme is enabled</source>
-        <translation>Tema scuro abilitato</translation>
+        <location filename="../qml/SettingsPage.qml" line="56"/>
+        <source>Theme and colors</source>
+        <translation>Tema e colori</translation>
     </message>
     <message>
-        <location filename="../src/qml/SettingsPage.qml" line="51"/>
-        <source>Dark theme is disabled</source>
-        <translation>Tema scuro disabilitato</translation>
+        <location filename="../qml/SettingsPage.qml" line="66"/>
+        <source>Primary color</source>
+        <translation>Colore primario</translation>
     </message>
     <message>
-        <location filename="../src/qml/SettingsPage.qml" line="59"/>
-        <source>Primary Color</source>
-        <translation>Colore Primario</translation>
+        <location filename="../qml/SettingsPage.qml" line="75"/>
+        <source>Accent color</source>
+        <translation>Colore secondario</translation>
     </message>
     <message>
-        <location filename="../src/qml/SettingsPage.qml" line="65"/>
-        <source>Accent Color</source>
-        <translation>Colore Secondario</translation>
+        <location filename="../qml/SettingsPage.qml" line="106"/>
+        <source>Choose accent color</source>
+        <translation>Scegli colore secondario</translation>
     </message>
     <message>
-        <location filename="../src/qml/SettingsPage.qml" line="73"/>
+        <location filename="../qml/SettingsPage.qml" line="106"/>
+        <source>Choose primary color</source>
+        <translation>Scegli colore primario</translation>
+    </message>
+    <message>
+        <location filename="../qml/SettingsPage.qml" line="83"/>
+        <source>Localization</source>
+        <translation>Localizzazione</translation>
+    </message>
+    <message>
+        <location filename="../qml/SettingsPage.qml" line="86"/>
+        <location filename="../qml/SettingsPage.qml" line="171"/>
         <source>Language</source>
         <translation>Lingua</translation>
     </message>
     <message>
-        <location filename="../src/qml/SettingsPage.qml" line="48"/>
+        <location filename="../qml/SettingsPage.qml" line="59"/>
         <source>Dark Theme</source>
         <translation>Tema Scuro</translation>
     </message>

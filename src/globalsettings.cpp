@@ -1,4 +1,4 @@
-#include "settings.h"
+#include "globalsettings.h"
 
 #include <QDebug>
 #include <QStringList>
@@ -8,10 +8,9 @@
 #include <QQmlEngine>
 #include <QLocale>
 #include <QStandardPaths>
-#include <QRegularExpression>
 #include <QDir>
 
-Settings::Settings(QObject *parent)
+GlobalSettings::GlobalSettings(QObject *parent)
     : QObject(parent)
     , m_darkTheme(false)
     , m_primaryColor("#607D8B") // Material.BlueGrey
@@ -32,34 +31,19 @@ Settings::Settings(QObject *parent)
     }
 }
 
-Settings::~Settings()
+GlobalSettings::~GlobalSettings()
 {
-    writeSettingsFile();
+    saveSettings();
 }
 
-Settings *Settings::instance()
+void GlobalSettings::loadSettings()
 {
-    static Settings s;
-    return &s;
-}
-
-QObject *Settings::singletonProvider(QQmlEngine *qmlEngine, QJSEngine *jsEngine)
-{
-    Q_UNUSED(qmlEngine)
-    Q_UNUSED(jsEngine)
-
-    return instance();
-}
-
-void Settings::readSettingsFile()
-{
-    qDebug() << "Read the settings file";
+    qDebug() << "Loading settings...";
 
     QFile readFile(m_settingsFilePath);
 
     if (!readFile.exists()) {
         qWarning() << "Cannot find the settings file:" << m_settingsFilePath;
-        qDebug() << "Using default settings values";
         if (translations().contains(QLocale().name().left(2)))
             setLanguage(QLocale().name().left(2));
         return;
@@ -80,12 +64,12 @@ void Settings::readSettingsFile()
     setAccentColor(jobj["accentColor"].toString());
     setLanguage(jobj["language"].toString());
 
-    qDebug() << "Settings file read";
+    qDebug() << "Settings loaded";
 }
 
-void Settings::writeSettingsFile() const
+void GlobalSettings::saveSettings() const
 {
-    qDebug() << "Write the settings file";
+    qDebug() << "Saving settings...";
 
     QFile writeFile(m_settingsFilePath);
 
@@ -101,15 +85,31 @@ void Settings::writeSettingsFile() const
     writeFile.write(QJsonDocument(jobj).toJson());
     writeFile.close();
 
-    qDebug() << "Settings file saved";
+    qDebug() << "Settings saved";
 }
 
-bool Settings::darkTheme() const
+QStringList GlobalSettings::translations()
+{
+    QDir translationsDir(":/i18n");
+    QStringList languages({ "en" });
+
+    if (translationsDir.exists()) {
+        QStringList translations = translationsDir.entryList({ "*.qm" });
+        translations.replaceInStrings("qt-android-template_", "");
+        translations.replaceInStrings(".qm", "");
+        languages.append(translations);
+        languages.sort();
+    }
+
+    return languages;
+}
+
+bool GlobalSettings::darkTheme() const
 {
     return m_darkTheme;
 }
 
-void Settings::setDarkTheme(bool darkTheme)
+void GlobalSettings::setDarkTheme(bool darkTheme)
 {
     if (m_darkTheme == darkTheme)
         return;
@@ -118,12 +118,12 @@ void Settings::setDarkTheme(bool darkTheme)
     Q_EMIT darkThemeChanged(m_darkTheme);
 }
 
-QColor Settings::primaryColor() const
+QColor GlobalSettings::primaryColor() const
 {
     return m_primaryColor;
 }
 
-void Settings::setPrimaryColor(const QColor &primaryColor)
+void GlobalSettings::setPrimaryColor(const QColor &primaryColor)
 {
     if (m_primaryColor == primaryColor)
         return;
@@ -132,12 +132,12 @@ void Settings::setPrimaryColor(const QColor &primaryColor)
     Q_EMIT primaryColorChanged(m_primaryColor);
 }
 
-QColor Settings::accentColor() const
+QColor GlobalSettings::accentColor() const
 {
     return m_accentColor;
 }
 
-void Settings::setAccentColor(const QColor &accentColor)
+void GlobalSettings::setAccentColor(const QColor &accentColor)
 {
     if (m_accentColor == accentColor)
         return;
@@ -146,31 +146,16 @@ void Settings::setAccentColor(const QColor &accentColor)
     Q_EMIT accentColorChanged(m_accentColor);
 }
 
-QString Settings::language() const
+QString GlobalSettings::language() const
 {
     return m_language;
 }
 
-void Settings::setLanguage(const QString &language)
+void GlobalSettings::setLanguage(const QString &language)
 {
     if (m_language == language)
         return;
 
     m_language = language;
     Q_EMIT languageChanged(m_language);
-}
-
-QStringList Settings::translations()
-{
-    QDir translationsDir(":/i18n");
-    QStringList languages({ "en" });
-
-    if (translationsDir.exists()) {
-        QStringList translations = translationsDir.entryList({ "*.qm" });
-        translations.replaceInStrings(QRegularExpression("[^_]+_(\\w+)\\.qm"), "\\1");
-        languages.append(translations);
-        languages.sort();
-    }
-
-    return languages;
 }
